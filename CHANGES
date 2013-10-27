@@ -1,0 +1,16 @@
+Revision History for Dist-Zilla-Plugin-Config-Git
+=================================================
+
+v0.90 2013-10-25
+----------------
+
+[229230c]
+* Author: Brendan Byrd <Perl@ResonatorSoft.org>
+* Date:   2013-10-23 23:58:32 -0400 (2 days ago)
+
+Convert to Dist::Zilla::Plugin::Config::Git
+
+
+===================================
+End of changes in the last 365 days
+===================================
