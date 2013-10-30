@@ -1,6 +1,6 @@
 package Dist::Zilla::Plugin::Config::Git;
 
-our $VERSION = '0.90'; # VERSION
+our $VERSION = '0.91'; # VERSION
 # ABSTRACT: Plugin configuration containing settings for a Git repo
 
 #############################################################################
@@ -121,16 +121,16 @@ has changelog => (
    default  => 'Changes',
 );
 
+sub mvp_multivalue_args { qw(allow_dirty) }
+
 #############################################################################
 # Pre/post-BUILD
 
-# Parts of this stolen from Plugin::Prereqs
 sub BUILDARGS {
    my ($class, @arg) = @_;
    my %copy = ref $arg[0] ? %{$arg[0]} : @arg;
 
    my $zilla = delete $copy{zilla};
-   my $name  = delete $copy{plugin_name};
 
    # Morph allow_dirty REs
    if (defined $copy{allow_dirty}) {
@@ -156,18 +156,9 @@ sub BUILDARGS {
    }
 
    return {
-      zilla       => $zilla,
-      plugin_name => $name,
+      zilla => $zilla,
       %copy,
    };
-}
-
-#############################################################################
-# Methods
-
-sub remote_repo_refspec {
-   my $self = shift;
-   $self->remote.' '.$self->local_branch.':'.$self->remote_branch;
 }
 
 42;
@@ -209,6 +200,8 @@ for intra-plugin data sharing, using distro (not user) data.
 Why use this?  To provide a standard set of information to other Git plugins easily, especially if the repo data is non-standard, or if
 you need more than one set of data.
 
+=for Pod::Coverage mvp_multivalue_args
+
 =head1 OPTIONS
 
 =head2 remote
@@ -240,15 +233,11 @@ Default is C<<< dist.ini >>> and whatever L<changelog> is set to.
 
 Name of your change log.
 
-=head1 METHODS
-
-=head2 remote_repo_refspec
-
-Shorthand for C<<< $remote $local_branch:$remote_branch >>>.
+Default is C<<< Changes >>>.
 
 =head1 ACKNOWLEDGEMENTS
 
-Kent Fredric and Karen Etheridge for implementation discussion.
+Kent Fredric and Karen Etheridge for implementation discussion.  Graham Knop for continuous code reviews.
 
 =head1 AVAILABILITY
 

@@ -21,10 +21,15 @@ no_index:
 provides:
   Dist::Zilla::Plugin::Config::Git:
     file: lib/Dist/Zilla/Plugin/Config/Git.pm
-    version: 0.90
+    version: 0.91
+  Dist::Zilla::Role::GitConfig:
+    file: lib/Dist/Zilla/Role/GitConfig.pm
+    version: 0.91
 requires:
   Dist::Zilla::Role::Plugin: 1.000
+  List::AllUtils: 0.01
   Moose: 0.34
+  String::Errf: 0.001
   Type::Utils: 0.001
   Types::Standard: 0.001
   namespace::clean: 0.06
@@ -35,7 +40,7 @@ resources:
   bugtracker: https://github.com/SineSwiper/Dist-Zilla-Plugin-Config-Git/issues
   homepage: https://github.com/SineSwiper/Dist-Zilla-Plugin-Config-Git/wiki
   repository: git://github.com/SineSwiper/Dist-Zilla-Plugin-Config-Git.git
-version: 0.90
+version: 0.91
 x_Dist_Zilla:
   perl:
     version: 5.014002

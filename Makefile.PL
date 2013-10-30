@@ -19,7 +19,9 @@ my %WriteMakefileArgs = (
   "NAME" => "Dist::Zilla::Plugin::Config::Git",
   "PREREQ_PM" => {
     "Dist::Zilla::Role::Plugin" => "1.000",
+    "List::AllUtils" => "0.01",
     "Moose" => "0.34",
+    "String::Errf" => "0.001",
     "Type::Utils" => "0.001",
     "Types::Standard" => "0.001",
     "namespace::clean" => "0.06",
@@ -29,7 +31,7 @@ my %WriteMakefileArgs = (
     "Test::CheckDeps" => "0.010",
     "Test::More" => "0.94"
   },
-  "VERSION" => "0.90",
+  "VERSION" => "0.91",
   "test" => {
     "TESTS" => "t/*.t"
   }

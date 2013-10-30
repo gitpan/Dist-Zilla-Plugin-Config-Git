@@ -15,7 +15,9 @@ my @modules = qw(
   CPAN::Meta
   CPAN::Meta::Requirements
   Dist::Zilla::Role::Plugin
+  List::AllUtils
   Moose
+  String::Errf
   Test::CheckDeps
   Test::More
   Type::Utils

@@ -57,12 +57,11 @@ OPTIONS
   changelog
     Name of your change log.
 
-METHODS
-  remote_repo_refspec
-    Shorthand for "$remote $local_branch:$remote_branch".
+    Default is "Changes".
 
 ACKNOWLEDGEMENTS
-    Kent Fredric and Karen Etheridge for implementation discussion.
+    Kent Fredric and Karen Etheridge for implementation discussion. Graham
+    Knop for continuous code reviews.
 
 AVAILABILITY
     The project homepage is

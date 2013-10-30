@@ -35,7 +35,9 @@
       "runtime" : {
          "requires" : {
             "Dist::Zilla::Role::Plugin" : "1.000",
+            "List::AllUtils" : "0.01",
             "Moose" : "0.34",
+            "String::Errf" : "0.001",
             "Type::Utils" : "0.001",
             "Types::Standard" : "0.001",
             "namespace::clean" : "0.06",
@@ -57,7 +59,11 @@
    "provides" : {
       "Dist::Zilla::Plugin::Config::Git" : {
          "file" : "lib/Dist/Zilla/Plugin/Config/Git.pm",
-         "version" : "0.90"
+         "version" : "0.91"
+      },
+      "Dist::Zilla::Role::GitConfig" : {
+         "file" : "lib/Dist/Zilla/Role/GitConfig.pm",
+         "version" : "0.91"
       }
    },
    "release_status" : "stable",
@@ -73,7 +79,7 @@
       },
       "x_irc" : "irc://irc.perl.org/#distzilla"
    },
-   "version" : "0.90",
+   "version" : "0.91",
    "x_Dist_Zilla" : {
       "perl" : {
          "version" : "5.014002"

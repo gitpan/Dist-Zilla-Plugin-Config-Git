@@ -7,7 +7,8 @@ use Test::More 0.88;
 use Test::NoTabs;
 
 my @files = (
-    'lib/Dist/Zilla/Plugin/Config/Git.pm'
+    'lib/Dist/Zilla/Plugin/Config/Git.pm',
+    'lib/Dist/Zilla/Role/GitConfig.pm'
 );
 
 notabs_ok($_) foreach @files;

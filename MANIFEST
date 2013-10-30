@@ -9,6 +9,7 @@ README
 README.html
 dist.ini
 lib/Dist/Zilla/Plugin/Config/Git.pm
+lib/Dist/Zilla/Role/GitConfig.pm
 t/00-check-deps.t
 t/00-compile.t
 t/00-report-prereqs.t
