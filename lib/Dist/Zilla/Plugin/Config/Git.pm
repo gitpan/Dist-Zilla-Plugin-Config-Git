@@ -1,20 +1,15 @@
 package Dist::Zilla::Plugin::Config::Git;
 
-our $VERSION = '0.91'; # VERSION
+our $VERSION = '0.92'; # VERSION
 # ABSTRACT: Plugin configuration containing settings for a Git repo
 
 #############################################################################
 # Modules
 
-use sanity;
 use Moose;
-use Type::Utils -all;
-use Types::Standard qw(Str ArrayRef RegexpRef);
+use MooseX::Types::Moose qw(Str ArrayRef RegexpRef);
 
 with 'Dist::Zilla::Role::Plugin';
-
-use namespace::clean;
-no warnings 'uninitialized';
 
 #############################################################################
 # Regular Expressions (for subtypes)
@@ -76,34 +71,40 @@ my $valid_git_repo = qr%
 #############################################################################
 # Subtypes
 
-my $GitRepo = declare 'GitRepo',
+use MooseX::Types -declare => [qw(
+   GitRepo
+   GitBranch
+)];
+
+subtype GitRepo,
    as Str,
    where { /^$valid_git_repo$/ }
 ;
 
-my $GitBranch = declare 'GitBranch',
+subtype GitBranch,
    as Str,
    where { /^$valid_ref_name$/ }
 ;
+use namespace::clean;
 
 #############################################################################
 # Attributes
 
 has remote => (
    is       => 'ro',
-   isa      => $GitRepo,
+   isa      => GitRepo,
    default  => 'origin',
 );
 
 has local_branch => (
    is       => 'ro',
-   isa      => $GitBranch,
+   isa      => GitBranch,
    default  => 'master',
 );
 
 has remote_branch => (
    is       => 'ro',
-   isa      => $GitBranch,
+   isa      => GitBranch,
    lazy     => 1,
    default  => sub { shift->local_branch },
 );
@@ -117,7 +118,7 @@ has allow_dirty => (
 
 has changelog => (
    is       => 'ro',
-   isa      => 'Str',
+   isa      => Str,
    default  => 'Changes',
 );
 
@@ -241,7 +242,7 @@ Kent Fredric and Karen Etheridge for implementation discussion.  Graham Knop for
 
 =head1 AVAILABILITY
 
-The project homepage is L<https://github.com/SineSwiper/Dist-Zilla-Plugin-Config-Git/wiki>.
+The project homepage is L<https://github.com/SineSwiper/Dist-Zilla-Plugin-Config-Git>.
 
 The latest version of this module is available from the Comprehensive Perl
 Archive Network (CPAN). Visit L<http://www.perl.com/CPAN/> to find a CPAN
@@ -275,6 +276,10 @@ Please report any bugs or feature requests via L<https://github.com/SineSwiper/D
 =head1 AUTHOR
 
 Brendan Byrd <BBYRD@CPAN.org>
+
+=head1 CONTRIBUTOR
+
+Graham Knop <haarg@haarg.org>
 
 =head1 COPYRIGHT AND LICENSE
 

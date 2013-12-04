@@ -1,20 +1,19 @@
 package Dist::Zilla::Role::GitConfig;
 
-our $VERSION = '0.91'; # VERSION
+our $VERSION = '0.92'; # VERSION
 # ABSTRACT: Easy role to add git_config option to most plugins
 
 #############################################################################
 # Modules
 
-use sanity;
 use Moose::Role;
-use Types::Standard qw(Str RegexpRef);
+use MooseX::Types::Moose qw(Str RegexpRef);
 
-use List::AllUtils qw(first);
+use List::Util qw(first);
+
 use String::Errf qw(errf);  # We are here to save the errf: E-R-R-F!
 
 use namespace::clean;
-no warnings 'uninitialized';
 
 #############################################################################
 # Requirements
@@ -120,7 +119,7 @@ directly.
 
 =head1 AVAILABILITY
 
-The project homepage is L<https://github.com/SineSwiper/Dist-Zilla-Plugin-Config-Git/wiki>.
+The project homepage is L<https://github.com/SineSwiper/Dist-Zilla-Plugin-Config-Git>.
 
 The latest version of this module is available from the Comprehensive Perl
 Archive Network (CPAN). Visit L<http://www.perl.com/CPAN/> to find a CPAN

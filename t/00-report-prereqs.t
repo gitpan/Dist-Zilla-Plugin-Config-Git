@@ -15,16 +15,13 @@ my @modules = qw(
   CPAN::Meta
   CPAN::Meta::Requirements
   Dist::Zilla::Role::Plugin
-  List::AllUtils
   Moose
+  MooseX::Types
   String::Errf
   Test::CheckDeps
   Test::More
-  Type::Utils
-  Types::Standard
   namespace::clean
   perl
-  sanity
 );
 
 my %exclude = map {; $_ => 1 } qw(

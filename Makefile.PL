@@ -19,49 +19,37 @@ my %WriteMakefileArgs = (
   "NAME" => "Dist::Zilla::Plugin::Config::Git",
   "PREREQ_PM" => {
     "Dist::Zilla::Role::Plugin" => "1.000",
-    "List::AllUtils" => "0.01",
     "Moose" => "0.34",
+    "MooseX::Types" => "0.06",
     "String::Errf" => "0.001",
-    "Type::Utils" => "0.001",
-    "Types::Standard" => "0.001",
-    "namespace::clean" => "0.06",
-    "sanity" => "0.91"
+    "namespace::clean" => "0.06"
   },
   "TEST_REQUIRES" => {
     "Test::CheckDeps" => "0.010",
     "Test::More" => "0.94"
   },
-  "VERSION" => "0.91",
+  "VERSION" => "0.92",
   "test" => {
     "TESTS" => "t/*.t"
   }
 );
 
 
-unless ( eval { ExtUtils::MakeMaker->VERSION(6.63_03) } ) {
-  my $tr = delete $WriteMakefileArgs{TEST_REQUIRES};
-  my $br = $WriteMakefileArgs{BUILD_REQUIRES};
-  for my $mod ( keys %$tr ) {
-    if ( exists $br->{$mod} ) {
-      $br->{$mod} = $tr->{$mod} if $tr->{$mod} > $br->{$mod};
-    }
-    else {
-      $br->{$mod} = $tr->{$mod};
-    }
-  }
-}
+my %FallbackPrereqs = (
+  "Dist::Zilla::Role::Plugin" => "1.000",
+  "Moose" => "0.34",
+  "MooseX::Types" => "0.06",
+  "String::Errf" => "0.001",
+  "Test::CheckDeps" => "0.010",
+  "Test::More" => "0.94",
+  "namespace::clean" => "0.06"
+);
 
-unless ( eval { ExtUtils::MakeMaker->VERSION(6.56) } ) {
-  my $br = delete $WriteMakefileArgs{BUILD_REQUIRES};
-  my $pp = $WriteMakefileArgs{PREREQ_PM};
-  for my $mod ( keys %$br ) {
-    if ( exists $pp->{$mod} ) {
-      $pp->{$mod} = $br->{$mod} if $br->{$mod} > $pp->{$mod};
-    }
-    else {
-      $pp->{$mod} = $br->{$mod};
-    }
-  }
+
+unless ( eval { ExtUtils::MakeMaker->VERSION(6.63_03) } ) {
+  delete $WriteMakefileArgs{TEST_REQUIRES};
+  delete $WriteMakefileArgs{BUILD_REQUIRES};
+  $WriteMakefileArgs{PREREQ_PM} = \%FallbackPrereqs;
 }
 
 delete $WriteMakefileArgs{CONFIGURE_REQUIRES}
